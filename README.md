@@ -19,7 +19,7 @@ Magnet Desktop is the interface to access Magnet Protocol, which build on the to
 
 ```bash
 # Clone repository
-git clone https://github.com/magnetai/magnet
+git clone https://github.com/magnetai/magnet-desktop
 
 # Install dependencies
 npm install
