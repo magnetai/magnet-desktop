@@ -52,6 +52,8 @@
     "createUpdaterArtifacts": true
   },
   "plugins": {
-    "updater": false
+    "updater": {
+      "active": false
+    }
   }
 }
