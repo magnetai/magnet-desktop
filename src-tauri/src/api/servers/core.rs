@@ -1,7 +1,7 @@
 use crate::utils::os::get_home;
 use std::borrow::Cow;
 use crate::APP_STATE_FILENAME;
-use log::{debug, error};
+use log::{debug};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use tauri_plugin_store::StoreExt;
