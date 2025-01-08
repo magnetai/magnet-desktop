@@ -53,8 +53,8 @@
   },
   "plugins": {
     "updater": {
-      "active": false
-    },
-    "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEFFQzU5MTM2REYzQ0ZBODIKUldTQytqemZOcEhGcnFLa3RZclZxZDdyMUZLREFiREFxL0tQYzUweEtpQVNYSmhHcWZIdktYS2cK"
+      "active": false,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEFFQzU5MTM2REYzQ0ZBODIKUldTQytqemZOcEhGcnFLa3RZclZxZDdyMUZLREFiREFxL0tQYzUweEtpQVNYSmhHcWZIdktYS2cK"
+    }
   }
 }
