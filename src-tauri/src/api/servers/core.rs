@@ -311,6 +311,10 @@ pub async fn install_server_function(
         }
     }
 
+    if args.is_empty() {
+        args = server.command_info.args.clone();
+    }
+
     config.mcp_servers.insert(
         server_id.to_string(),
         ClientServerConfig {
