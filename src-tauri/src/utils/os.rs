@@ -1,4 +1,4 @@
-use anyhow::{Context, Result};
+use anyhow::{anyhow, Context, Result};
 use home;
 use log::trace;
 use std::path::PathBuf;
