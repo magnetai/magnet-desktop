@@ -92,12 +92,31 @@ pub struct ClientServerConfig {
     #[serde(default)]
     command: String,
     args: Vec<String>,
-    #[serde(default)]
+    #[serde(default, with = "raw_string_map")]
     env: HashMap<String, String>,
     #[serde(rename = "commandCreator", default)]
     command_creator: String,
     #[serde(rename = "inputArg", default)]
     input_arg: InputArg,
+}
+
+mod raw_string_map {
+    use serde::{self, Deserialize, Deserializer, Serializer};
+    use std::collections::HashMap;
+
+    pub fn serialize<S>(map: &HashMap<String, String>, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        serializer.collect_map(map.iter().map(|(k, v)| (k, v.replace("\\n", "\n"))))
+    }
+
+    pub fn deserialize<'de, D>(deserializer: D) -> Result<HashMap<String, String>, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        HashMap::deserialize(deserializer)
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize)]
