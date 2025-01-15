@@ -245,7 +245,7 @@ pub async fn install_server_function(
     let mut command = server.command_info.command.clone();
     let mut arg_configs = server.command_info.args.join(" ");
     let mut input_arg_config = server.command_info.input_arg.clone();
-    let processed_env = processed_env.unwrap_or_else(|| server.command_info.env.clone());
+    let env = env.unwrap_or_else(|| server.command_info.env.clone());
     if input_arg.is_some() {
         input_arg_config.value = input_arg.unwrap();
         arg_configs = format!("{} {}", arg_configs, escape(Cow::from(input_arg_config.value.join(" "))));
@@ -316,12 +316,9 @@ pub async fn install_server_function(
         args = server.command_info.args.clone();
     }
 
-    let env = processed_env.map(|mut env_map| {
-        env_map.iter_mut().for_each(|(_, value)| {
-            *value = value.replace("\\n", "\n");
-        });
-        env_map
-    }).unwrap_or_else(|| server.command_info.env.clone());
+    env.iter_mut().for_each(|(_, value)| {
+        *value = value.replace("\\n", "\n");
+    });
 
     config.mcp_servers.insert(
         server_id.to_string(),
