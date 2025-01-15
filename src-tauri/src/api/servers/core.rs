@@ -245,7 +245,7 @@ pub async fn install_server_function(
     let mut command = server.command_info.command.clone();
     let mut arg_configs = server.command_info.args.join(" ");
     let mut input_arg_config = server.command_info.input_arg.clone();
-    let env = env.unwrap_or_else(|| server.command_info.env.clone());
+    let processed_env = processed_env.unwrap_or_else(|| server.command_info.env.clone());
     if input_arg.is_some() {
         input_arg_config.value = input_arg.unwrap();
         arg_configs = format!("{} {}", arg_configs, escape(Cow::from(input_arg_config.value.join(" "))));
@@ -316,7 +316,7 @@ pub async fn install_server_function(
         args = server.command_info.args.clone();
     }
 
-    let processed_env = env.map(|mut env_map| {
+    let env = processed_env.map(|mut env_map| {
         env_map.iter_mut().for_each(|(_, value)| {
             *value = value.replace("\\n", "\n");
         });
@@ -328,7 +328,7 @@ pub async fn install_server_function(
         ClientServerConfig {
             command,
             args,
-            processed_env,
+            env,
             command_creator: "Magnet".to_string(),
             input_arg: input_arg_config,
         },
